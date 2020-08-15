@@ -1,0 +1,70 @@
+version: '3.6'
+services:
+  tor:
+    image: mrecco/anonjail-tor:0.4.3.5
+    environment:
+      TOR_BRIDGE_1: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+      TOR_BRIDGE_2: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+      TOR_BRIDGE_3: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+    expose:
+      - "9050"
+    networks:
+      default:
+        ipv4_address: 169.254.1.2
+    restart: on-failure
+    stop_grace_period: 1s
+
+  doh:
+    image: mrecco/anonjail-doh:0.0.9
+    environment:
+      DNS_OVER_HTTPS_IP: "1.1.1.1"
+      DNS_OVER_HTTPS_DOMAIN: "cloudflare-dns.com"
+      DNS_OVER_HTTPS_SOCKS5: "169.254.1.2:9050"
+    expose:
+      - "53/udp"
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - "127.0.0.1"
+    networks:
+      default:
+        ipv4_address: 169.254.1.3
+    restart: on-failure
+    stop_grace_period: 1s
+
+  ovpn:
+    image: mrecco/anonjail-ovpn:2.4.9
+    environment:
+      OVPN_SOCKS5: "169.254.1.2:9050"
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - "169.254.1.3"
+    networks:
+      default:
+        ipv4_address: 169.254.1.4
+    restart: on-failure
+    stop_grace_period: 1s
+
+  app:
+    image: mrecco/anonjail-app-basic:1.0.0-alpine
+    # image: mrecco/anonjail-app-basic:1.0.0-ubuntu
+    # image: mrecco/anonjail-app-basic:1.0.0-debian
+    # image: mrecco/anonjail-app-basic:1.0.0-centos
+    stdin_open: true
+    environment:
+      DEFAULT_GATEWAY: "169.254.1.4"
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - "169.254.1.3"
+    networks:
+      default:
+        ipv4_address: 169.254.1.5
+    stop_grace_period: 1s
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 169.254.1.0/24
