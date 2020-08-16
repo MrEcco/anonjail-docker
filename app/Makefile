@@ -33,6 +33,20 @@ push.centos:
 	@echo Pushes is aautomated by dockerhub CI! Dont push manualy, estupido!
 	# @docker push $(IMAGE_NAME):$(IMAGE_TAG)-centos
 
+pull: pull.alpine pull.ubuntu pull.debian pull.centos
+
+pull.alpine:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)-alpine
+
+pull.ubuntu:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)-ubuntu
+
+pull.debian:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)-debian
+
+pull.centos:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)-centos
+
 rmi: rmi.alpine rmi.ubuntu rmi.debian rmi.centos
 
 rmi.alpine:

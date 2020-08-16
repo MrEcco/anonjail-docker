@@ -1,11 +1,15 @@
 IMAGE_NAME=mrecco/anonjail-tor
-IMAGE_TAG=0.4.3.5
+IMAGE_TAG=1.0.0
+# IMAGE_TAG=0.4.3.5
 
 build:
 	@docker build --compress -f tor/Dockerfile -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 push:
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
+
+pull:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)
 
 rmi:
 	@docker rmi $(IMAGE_NAME):$(IMAGE_TAG)

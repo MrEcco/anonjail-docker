@@ -1,11 +1,14 @@
 IMAGE_NAME=mrecco/anonjail-doh
-IMAGE_TAG=0.0.9
+IMAGE_TAG=1.0.0
 
 build:
 	@docker build --compress -f doh/Dockerfile -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 push:
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
+
+pull:
+	@docker pull $(IMAGE_NAME):$(IMAGE_TAG)
 
 rmi:
 	@docker rmi $(IMAGE_NAME):$(IMAGE_TAG)

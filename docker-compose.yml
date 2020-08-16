@@ -1,17 +1,11 @@
 version: '3.6'
 services:
   tor:
-    image: mrecco/anonjail-tor:0.4.3.5
-    # environment:
-    #   TOR_BRIDGE_1: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
-    #   TOR_BRIDGE_2: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
-    #   TOR_BRIDGE_3: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+    image: mrecco/anonjail-tor:1.0.0
     environment:
-      TOR_BRIDGE_1: "obfs4 80.222.149.194:52313 13499A6677D38C132DB84A5BCC841A61210B2491 cert=0TC1Ul9jW1nCALKm5pKYcrrKoZm/ttDvbMsf0qJ9SyhhHSlXwpbrJUeFYiHAtjptMRpAXw iat-mode=0"
-      TOR_BRIDGE_2: "obfs4 45.59.126.23:443 5FAB366DF6B30E69999B399242B40B4DC24A2E73 cert=YG42jMAQ6hQ291ACpdbHwoKeSoDV7Puq4G+F7kJ+MKEMtvy/unZOG4duM+xA9Tf7NuKcVw iat-mode=0"
-      TOR_BRIDGE_3: "92.242.90.253:9001 9C9EB3CF3FE588750E729676A892FD765ED2993B"
-      TOR_BRIDGE_4: "199.101.96.74:443 0E79B706022F09B787FB5545D3D5F721F86DB177"
-      TOR_BRIDGE_5: "54.185.105.132:9001 518120BE324FB6E70D7D1F735E39D54E8F912021"
+      TOR_BRIDGE_1: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+      TOR_BRIDGE_2: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
+      TOR_BRIDGE_3: "obfs4 0.0.0.0:12345 0123456789ABCDEF0123456789ABCDEF01234567 cert=base64base64base64base64base64base64base64base64base64base64base64base some-option=0 some-another-option=1"
     expose:
       - "9050"
     networks:
@@ -21,7 +15,7 @@ services:
     stop_grace_period: 1s
 
   doh:
-    image: mrecco/anonjail-doh:0.0.9
+    image: mrecco/anonjail-doh:1.0.0
     environment:
       DNS_OVER_HTTPS_IP: "1.1.1.1"
       DNS_OVER_HTTPS_DOMAIN: "cloudflare-dns.com"
@@ -39,7 +33,7 @@ services:
     stop_grace_period: 1s
 
   ovpn:
-    image: mrecco/anonjail-ovpn:2.4.9
+    image: mrecco/anonjail-ovpn:1.0.0
     environment:
       OVPN_SOCKS5: "169.254.1.2:9050"
     cap_add:
