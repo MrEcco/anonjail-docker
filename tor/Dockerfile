@@ -12,7 +12,7 @@ RUN apk add --no-cache                                      \
     chmod 700 /var/lib/tor /var/run/tor                  && \
     rm -rf /var/lib/tor/* /var/run/tor/* /etc/tor/* || true
 
-COPY ./docker /
+COPY ./tor/docker /
 
 RUN chown tor /etc/tor/torrc
 

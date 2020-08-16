@@ -20,6 +20,6 @@ RUN apk add --no-cache                                      \
         musl-dev                                            \
         python3-dev
 
-COPY ./docker /
+COPY ./ovpn/docker /
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]

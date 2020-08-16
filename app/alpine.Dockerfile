@@ -19,7 +19,7 @@ RUN apk add --no-cache                                      \
         musl-dev                                            \
         python3-dev
 
-COPY ./docker /
+COPY ./app/docker /
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]

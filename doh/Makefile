@@ -2,7 +2,7 @@ IMAGE_NAME=mrecco/anonjail-doh
 IMAGE_TAG=0.0.9
 
 build:
-	@docker build --compress -t $(IMAGE_NAME):$(IMAGE_TAG) .
+	@docker build --compress -f doh/Dockerfile -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 push:
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)

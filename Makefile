@@ -1,11 +1,11 @@
 build:
-	@cd app && make build
-	@cd doh && make build
-	@cd ovpn && make build
-	@cd tor && make build
+	@make -f app/Makefile build
+	@make -f doh/Makefile build
+	@make -f ovpn/Makefile build
+	@make -f tor/Makefile build
 
 rmi:
-	@cd app && make rmi
-	@cd doh && make rmi
-	@cd ovpn && make rmi
-	@cd tor && make rmi
+	@make -f app/Makefile rmi || true
+	@make -f doh/Makefile rmi || true
+	@make -f ovpn/Makefile rmi || true
+	@make -f tor/Makefile rmi || true

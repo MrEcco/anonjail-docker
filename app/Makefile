@@ -4,16 +4,16 @@ IMAGE_TAG=1.0.0
 build: build.alpine build.ubuntu build.debian build.centos
 
 build.alpine:
-	@docker build -f alpine.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-alpine .
+	@docker build -f app/alpine.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-alpine .
 
 build.ubuntu:
-	@docker build -f ubuntu.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-ubuntu .
+	@docker build -f app/ubuntu.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-ubuntu .
 
 build.debian:
-	@docker build -f debian.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-debian .
+	@docker build -f app/debian.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-debian .
 
 build.centos:
-	@docker build -f centos.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-centos .
+	@docker build -f app/centos.Dockerfile --compress -t $(IMAGE_NAME):$(IMAGE_TAG)-centos .
 
 push: push.alpine push.ubuntu push.debian push.centos
 

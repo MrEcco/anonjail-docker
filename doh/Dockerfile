@@ -25,7 +25,7 @@ RUN apk add --no-cache                                      \
         python3-dev                                      && \
     rm /etc/proxychains/* || true
 
-COPY ./docker /
+COPY ./doh/docker /
 
 EXPOSE 53/UDP
 

@@ -26,7 +26,7 @@ RUN yum install --assumeyes                                 \
     yum clean all --assumeyes                            && \
     rm -rf /var/cache/yum
 
-COPY ./docker /
+COPY ./app/docker /
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]

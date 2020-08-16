@@ -31,7 +31,7 @@ RUN apt-get update                                       && \
     apt-get autoclean -y                                 && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY ./docker /
+COPY ./app/docker /
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 CMD ["/bin/bash"]

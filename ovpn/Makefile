@@ -2,7 +2,7 @@ IMAGE_NAME=mrecco/anonjail-ovpn
 IMAGE_TAG=2.4.9
 
 build:
-	@docker build --compress -t $(IMAGE_NAME):$(IMAGE_TAG) .
+	@docker build --compress -f ovpn/Dockerfile -t $(IMAGE_NAME):$(IMAGE_TAG) .
 
 push:
 	@docker push $(IMAGE_NAME):$(IMAGE_TAG)
